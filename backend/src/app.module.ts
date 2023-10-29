@@ -15,6 +15,7 @@ import { Recording } from './resources/recording/entities/recording.entity';
       password: '12345678',
       database: 'my_diary_db',
       entities: [Recording],
+      synchronize: true,
     }),
     RecordingModule,
   ],

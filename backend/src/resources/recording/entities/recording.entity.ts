@@ -4,8 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  Entity,
 } from 'typeorm';
 
+@Entity()
 export class Recording {
   @PrimaryGeneratedColumn()
   id: number;

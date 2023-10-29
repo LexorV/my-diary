@@ -1,19 +1,29 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateRecordingDto } from './dto/create-recording.dto';
 import { UpdateRecordingDto } from './dto/update-recording.dto';
+import { Recording } from './entities/recording.entity';
 
 @Injectable()
 export class RecordingService {
-  create(createRecordingDto: CreateRecordingDto) {
-    return 'This action adds a new recording';
+  constructor(
+    @InjectRepository(Recording)
+    private recordingRepository: Repository<Recording>,
+  ) {}
+
+  public async create(createRecordingDto: CreateRecordingDto) {
+    return await this.recordingRepository.save({
+      ...createRecordingDto,
+    });
   }
 
-  findAll() {
-    return `This action returns all recording`;
+  public async findAll() {
+    return this.recordingRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} recording`;
+  public async findOne(id: number) {
+    return await this.recordingRepository.findOne({ where: { id } });
   }
 
   update(id: number, updateRecordingDto: UpdateRecordingDto) {
