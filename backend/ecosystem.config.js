@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'may-diary-backend',
+      name: 'my-diary-backend',
       script: './dist/main.js',
     },
   ],

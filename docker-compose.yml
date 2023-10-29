@@ -8,8 +8,6 @@ services:
     #image: lexv/tech-and-dev-backend
     links:
       - postgres
-    env_file:
-      - ./.env
     ports:
       - '3000:3000'
     restart: on-failure
@@ -18,12 +16,11 @@ services:
   postgres:
     container_name: "postgres"
     environment:
-      POSTGRES_DB: "habrdb"
-      POSTGRES_USER: "habrpguser"
-      POSTGRES_PASSWORD: "pgpwd4habr"
-      POSTGRES_HOST: "postgres"
-    env_file:
-      - ./.env
+      - POSTGRES_DB=my_diary_db
+      - POSTGRES_USER=userDiary
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PGDATA=/var/lib/postgresql/pgdata
     image: postgres
     ports:
       - '5432:5432'
