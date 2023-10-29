@@ -1,0 +1,36 @@
+---
+services:
+  backend:
+    container_name: "backend-my-diary"
+    depends_on:
+      - postgres
+    build: ./backend
+    #image: lexv/tech-and-dev-backend
+    links:
+      - postgres
+    env_file:
+      - ./.env
+    ports:
+      - '3000:3000'
+    restart: on-failure
+    volumes:
+      - data-files:/app/dist/static   
+  postgres:
+    container_name: "postgres"
+    environment:
+      POSTGRES_DB: "habrdb"
+      POSTGRES_USER: "habrpguser"
+      POSTGRES_PASSWORD: "pgpwd4habr"
+      POSTGRES_HOST: "postgres"
+    env_file:
+      - ./.env
+    image: postgres
+    ports:
+      - '5432:5432'
+    restart: on-failure
+    volumes:
+      - data-files:/app/dist/static
+volumes:
+    data:
+    data-files:    
+version: '3.9'
