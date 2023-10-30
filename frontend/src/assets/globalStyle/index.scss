@@ -1,0 +1,24 @@
+@import './variables.scss';
+@import './fonts/stylesheet.scss';
+p, h1, h2, li {
+    font-family: $fontFamilyGlobal;
+}
+%text-small {
+    font-family: $fontFamilyGlobal;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #050F28;
+}
+
+%text-middle {
+    font-family: $fontFamilyGlobal;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 110%;
+    color: #050F28;
+    @media screen and (max-width: 700px) {
+        font-size: 26px;
+    }
+}

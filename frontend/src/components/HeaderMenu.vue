@@ -1,11 +1,16 @@
 <template>
   <header class="header"> 
     <img class="logo" alt="logo" src="../assets/images/Logo.jpg">
+    <BasicButton text="НАПИСАТЬ" />
   </header>
 </template>
    
 <script>
+import BasicButton from '@/ui/BasicButton.vue';
 export default {
+  components: {
+    BasicButton
+  },
   name: 'headerMenu',
 }
 </script>
