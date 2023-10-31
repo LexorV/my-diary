@@ -1,17 +1,20 @@
-<template>
+<template> 
     <HeaderMenu />
     <MainSection />
+    <ModalNewRecord />
   <router-view />
 </template>
 
 <script>
 import HeaderMenu from '@/components/HeaderMenu.vue'
 import MainSection from '@/components/MainSection.vue'
+import ModalNewRecord from '@/components/ModalNewRecord.vue'
 export default {
   name: 'App',
   components: {
     HeaderMenu,
     MainSection,
+    ModalNewRecord,
   }
 }
 </script>
@@ -19,10 +22,8 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0;
 }
 </style>

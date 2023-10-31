@@ -15,11 +15,12 @@ export default {
 }
 </script>
    
-<style scoped>
+<style lang="scss" scoped>
 .header {
   display: flex;
   justify-content: space-between;
   margin-top: 28px;
+  max-width: $maxWidth;
 }
 .logo {
   max-width: 448px;
