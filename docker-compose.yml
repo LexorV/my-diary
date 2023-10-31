@@ -5,14 +5,23 @@ services:
     depends_on:
       - postgres
     build: ./backend
-    #image: lexv/tech-and-dev-backend
     links:
       - postgres
     ports:
       - '3000:3000'
     restart: on-failure
     volumes:
-      - data-files:/app/dist/static   
+      - data-files:/app/dist/static
+  frontend:
+    container_name: "frontend-my-diary"
+    build: ./frontend
+    ports: 
+    - "8081:80"
+    tty: true
+    stdin_open: true
+    restart: on-failure
+    depends_on: 
+     - backend
   postgres:
     container_name: "postgres"
     environment:
