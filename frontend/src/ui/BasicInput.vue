@@ -1,22 +1,20 @@
 <template>
   <div class="container">
-    <label class="label">
-
      <span class="title">{{ title }}</span> 
       <span :class="[{ 'message': errMessage }, 'message-invisible' ]">
       {{ errMessage }}
     </span>
     <input
+      required
       autocomplete="false"
+      :value="value"
       :type="inputType"
       :class="[{ 'err-input': errMessage }, 'input' ]"
       :placeholder="placeholder"
       :style="cssVars"
       :name="name"
-      :value="value"
-      @input="onChange"
+      @input="$emit('update:value', $event.target.value)"
     >
-  </label>
   </div>
 </template>
 
@@ -33,7 +31,7 @@ export default {
     },
     title: {
       type: String,
-      default: 'Загловок'
+      default: 'Загаловок'
     },
     inputType: {
       type: String,
@@ -64,6 +62,7 @@ export default {
       default: ''
     }
   },
+  emits: ['update:value'],
   computed: {
     cssVars () {
       return {
@@ -80,13 +79,14 @@ export default {
   .input {
     width: var(--width);
     height: var(--height);
-    border-radius: 15px;
-    padding-left: 21px;
+    border-radius: 4px;
+    padding: 15px;
     background-color: var(--color);
     border: none;
     font-style: normal;
     box-sizing: border-box;
     transition: all ease .8s;
+    @extend %text-small
   }
   .err-input {
     outline: 1px solid #ca0c0c ;
@@ -98,6 +98,7 @@ export default {
     width: var(--width);
     flex-direction: column;
     position: relative;
+    justify-content: flex-start;
   }
   .message-invisible {
     position:absolute;
@@ -106,15 +107,10 @@ export default {
     left: 0;
     z-index: -1;
   }
-  .label {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
   .title {
     text-align: left;
     gap: 2px;
+    @extend %text-small
   }
   .message{
     position: absolute;

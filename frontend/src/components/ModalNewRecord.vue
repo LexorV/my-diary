@@ -1,33 +1,64 @@
 <template>
     <div class="overlay">
-        <form class="modal">
-            <h3>Новая запись</h3>
+        <form class="modal" @submit.prevent="addRecording">
+            <button @click="closeModal" type="button" class="close_button"> <img
+                    src="@/assets/images/close-icon.svg"></button>
+            <h3 class="title">Новая запись</h3>
             <div class="box_input">
-                <BasicInput />
-                <BasicInput />
+                <BasicInput v-model:value="title" :value="title" />
+                <BasicInput v-model:value="date" :value="date" title="Дата" inputType="datetime-local" />
             </div>
-            <BasicTextarea />
-            
-            <BasicButton type="submit" />
+            <BasicTextarea v-model:value="text" :value="text" />
+
+            <BasicButton text="ПОДЕЛИТСЯ НАБОЛЕВШИМ" type="submit" />
         </form>
     </div>
-  
 </template>
 
 <script>
+import axios from 'axios';
 import BasicInput from '@/ui/BasicInput.vue'
 import BasicButton from '@/ui/BasicButton.vue'
 import BasicTextarea from '@/ui/BasicTextarea.vue'
-
-    
+import { API } from '@/constants/index.js'
 export default {
     components: {
         BasicInput,
         BasicButton,
         BasicTextarea
     },
-   
-    data () {
+    props: {
+        closeModal: {
+            type: Function,
+            default: () => { }
+        },
+        updateCards: {
+            type: Function,
+            default: () => { }
+        }
+    },
+    data() {
+        return {
+            title: '',
+            text: '',
+            date: ''
+        }
+    },
+    methods: {
+        addRecording() {
+            axios
+                .post(`${API}/recording`,
+                    {
+                        title: this.title,
+                        body: this.text,
+                        date: this.date
+                    })
+                .then((res) => {
+                    this.updateCards(res.data)
+                    this.closeModal()
+                })
+                .catch(error => console.log(error))
+        },
     },
 }
 </script>
@@ -41,8 +72,28 @@ export default {
     z-index: 10;
     background-color: rgb(0, 0, 0, 0.5);
 }
+
+.title {
+    text-align: left;
+    margin: 0;
+    font-size: 42px;
+    @extend %text-middle
+}
+
+.close_button {
+    background-color: initial;
+    border: none;
+    position: absolute;
+    right: 34px;
+    top: 27px;
+    cursor: pointer;
+}
+
 .modal {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
     top: 10%;
     left: 25%;
     width: 1200px;
@@ -53,20 +104,17 @@ export default {
     z-index: 11;
     padding: 60px 40px;
 }
+
 .box_input {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 42px;
     width: 100%;
 }
-.main {
-border-radius: 80px 80px 0px 0px;
-background: var(--grey, #F6F6F6);
-max-width: $maxWidth;
-}
+
 .board_cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
 }
-
 </style>

@@ -1,4 +1,4 @@
-import { Length, IsString } from 'class-validator';
+import { Length, IsString, IsDate } from 'class-validator';
 export class CreateRecordingDto {
   @IsString()
   @Length(1, 200)
@@ -7,4 +7,7 @@ export class CreateRecordingDto {
   @IsString()
   @Length(1, 2000)
   public body: string;
+
+  @IsDate()
+  public date: Date;
 }

@@ -13,9 +13,10 @@ export class RecordingService {
   ) {}
 
   public async create(createRecordingDto: CreateRecordingDto) {
-    return await this.recordingRepository.save({
+    await this.recordingRepository.save({
       ...createRecordingDto,
     });
+    return this.recordingRepository.find();
   }
 
   public async findAll() {

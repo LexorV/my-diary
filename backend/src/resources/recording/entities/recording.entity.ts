@@ -21,6 +21,9 @@ export class Recording {
   updatedAt: Date;
 
   @Column()
+  date: Date;
+
+  @Column()
   @Length(1, 200)
   public title: string;
 

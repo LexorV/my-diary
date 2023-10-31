@@ -1,13 +1,13 @@
 <template>
     <main class="main">
-        <h1>Мой Дневничёк</h1>
+        <h1>Мой Дневничок</h1>
         <ul class="board_cards"> 
-            <CardDiary v-for="(card, index) in testData"
+            <CardDiary v-for="(card, index) in cardsData"
             :key="card.id"
             :title="card.title"
-            :text="card.text"
-            :date="card.date"
+            :text="card.body"
             :index="index"
+            :date="card.date"
             /> 
         </ul>
     </main>
@@ -27,8 +27,13 @@ export default {
         { id: 2, title: 'testTitle2', text: 'testText2', date: new Date},
     ]
         }
-
     },
+    props: {
+        cardsData: {
+            type: Array,
+            default: () => []
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>

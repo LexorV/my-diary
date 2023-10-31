@@ -1,7 +1,7 @@
 <template>
   <header class="header"> 
     <img class="logo" alt="logo" src="../assets/images/Logo.jpg">
-    <BasicButton text="НАПИСАТЬ" />
+    <BasicButton @click="openModal" type="button" text="НАПИСАТЬ" />
   </header>
 </template>
    
@@ -12,6 +12,12 @@ export default {
     BasicButton
   },
   name: 'headerMenu',
+  props: {
+        openModal: {
+            type:Function,
+            default: () => {}
+        }
+    }
 }
 </script>
    

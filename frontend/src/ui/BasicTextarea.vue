@@ -1,8 +1,9 @@
 <template>
   <div class="container">
-    <p :class="[{ 'message': errMessage }, 'message-invisible' ]">
+    <span class="title">{{ title }}</span> 
+    <span :class="[{ 'message': errMessage }, 'message-invisible' ]">
       {{ errMessage }}
-    </p>
+    </span>
     <textarea
       autocomplete="false"
       :class="[{ 'err-textarea': errMessage }, 'textarea' ]"
@@ -10,7 +11,7 @@
       :style="cssVars"
       :name="name"
       :value="value"
-      @input="onChange"
+      @input="$emit('update:value', $event.target.value)"
     />
     <div class="textarea-action">
       <slot name="action" />
@@ -29,9 +30,13 @@ export default {
       type: String,
       default: ''
     },
+    title: {
+      type: String,
+      default: 'Заметка'
+    },
     placeholder: {
       type: String,
-      default: 'Текст'
+      default: ''
     },
     width: {
       type: String,
@@ -54,6 +59,7 @@ export default {
       default: () => {}
     }
   },
+  emits: ['update:value'],
   computed: {
     cssVars () {
       return {
@@ -70,7 +76,7 @@ export default {
   .textarea {
     width: var(--width);
     height: var(--height);
-    border-radius: 30px;
+    border-radius: 4px;
     padding: 25px 50px 25px 25px;
     border: none;
     background-color: var(--color);
@@ -78,10 +84,15 @@ export default {
     transition: all ease .8s;
     background-color: #F3F3F3;
     white-space: pre-line;
+    @extend %text-small
   }
   .err-textarea{
     outline: 1px solid #ca0c0c ;
-
+  }
+  .title {
+    text-align: left;
+    gap: 2px;
+    @extend %text-small
   }
   .container{
     display: flex;

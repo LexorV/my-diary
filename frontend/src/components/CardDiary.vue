@@ -9,12 +9,12 @@
         <div class="date_box">
             <div class="date_icon_box">
                 <img class="date_icon" alt="Дата" src="@/assets/images/calendar-icon.svg" />
-                <span class="date_text"> {{ date.toLocaleDateString('ro-RO') }} </span>
+                <span class="date_text"> {{ newDate.toLocaleDateString('ro-RO') }} </span>
             </div>
 
             <div class="date_icon_box">
                 <img class="date_icon" alt="Время" src="@/assets/images/clock-icon.svg" />
-                <span  class="date_text"> {{ `${date.getHours('ro-RO')}:${date.getMinutes('ro-RO')}` }} </span>
+                <span class="date_text"> {{ `${newDate.getHours('ro-RO')}:${newDate.getMinutes('ro-RO')}` }} </span>
             </div>
         </div>
 
@@ -40,8 +40,13 @@ export default {
             type: Number,
             default: 0
         }
+    }, data () {
+        return {
+            newDate: new Date(this.date)
+        }
     }
 }
+
 </script>
 
 <style lang="scss" scoped>

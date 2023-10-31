@@ -58,7 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 .button {
-    @extend %text-middle;
+    @extend %text-small;
     width: var(--width);
     height:  var(--height);
     display: inline-block;
