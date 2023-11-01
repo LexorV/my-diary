@@ -71,6 +71,9 @@ export default {
     color: white;
     font-size: 18px;
 }
+.button:hover {
+  background-color: #88A1DE;
+} 
 .icon_edit {
   display: none;
 }
