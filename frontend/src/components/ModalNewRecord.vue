@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import {ref} from 'vue'
 import axios from 'axios';
 import BasicInput from '@/ui/BasicInput.vue'
 import BasicButton from '@/ui/BasicButton.vue'
@@ -36,6 +37,12 @@ export default {
             type: Function,
             default: () => { }
         }
+    },
+    setup() {
+        const title = ref('')
+        const text = re
+
+
     },
     data() {
         return {

@@ -20,14 +20,6 @@ export default {
     components: {
         CardDiary
     },
-    data () {
-        return {
-            testData: [
-        { id: 1, title: 'testTitle1', text: 'testText', date: new Date},
-        { id: 2, title: 'testTitle2', text: 'testText2', date: new Date},
-    ]
-        }
-    },
     props: {
         cardsData: {
             type: Array,

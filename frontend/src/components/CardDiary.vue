@@ -40,9 +40,12 @@ export default {
             type: Number,
             default: 0
         }
-    }, data () {
+    },
+    
+    setup (props) {
+        const newDate = new Date(props.date)
         return {
-            newDate: new Date(this.date)
+            newDate
         }
     }
 }
