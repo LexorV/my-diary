@@ -39,5 +39,19 @@ max-width: $maxWidth;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 40px;
 }
+@media screen and (max-width: $tablet) {
+    .board_cards{
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+  }
+}
+@media screen and (max-width: $mobile) {
+    .board_cards{
+       display: flex;
+       width: 100%;
+       flex-direction: column;
+       gap: 20px;
+  }
+}
 
 </style>
